@@ -1,7 +1,5 @@
 // Renderer.cpp
 
-// STD Includes
-#include <iostream>
 // Project Includes
 #include <SDL2Cpp\Renderer.hpp>
 #include <SDL2Cpp\Texture.hpp>
@@ -35,7 +33,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Renderer::SetDrawColor] Failed to clear renderer: " << SDL_GetError() << std::endl;
+			SDL_Log("[Renderer::SetDrawColor] Failed to clear renderer: %s", SDL_GetError());
 
 		return code;
 	}
@@ -47,7 +45,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Renderer::SetBlendMode] Failed to clear renderer: " << SDL_GetError() << std::endl;
+			SDL_Log("[Renderer::SetBlendMode] Failed to clear renderer: %s", SDL_GetError());
 
 		return code;
 	}
@@ -59,7 +57,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Renderer::Clear] Failed to clear renderer: " << SDL_GetError() << std::endl;
+			SDL_Log("[Renderer::Clear] Failed to clear renderer: %s", SDL_GetError());
 
 		return code;
 	}
@@ -71,7 +69,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Renderer::Draw] Failed to draw texture: " << SDL_GetError() << std::endl;
+			SDL_Log("[Renderer::Draw] Failed to draw texture: %s", SDL_GetError());
 
 		return code;
 	}
@@ -83,7 +81,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Renderer::Draw] Failed to draw texture: " << SDL_GetError() << std::endl;
+			SDL_Log("[Renderer::Draw] Failed to draw texture: %s", SDL_GetError());
 
 		return code;
 	}
@@ -95,7 +93,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Renderer::DrawLine] Failed to draw line: " << SDL_GetError() << std::endl;
+			SDL_Log("[Renderer::DrawLine] Failed to draw line: %s", SDL_GetError());
 
 		return code;
 	}
@@ -112,7 +110,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Renderer::DrawRectangle] Failed to " << (pFill ? "fill" : "draw") << " rectangle: " << SDL_GetError() << std::endl;
+			SDL_Log("[Renderer::DrawRectangle] Failed to %s rectangle: %s", (pFill ? "fill" : "draw"), SDL_GetError());
 
 		return code;
 	}

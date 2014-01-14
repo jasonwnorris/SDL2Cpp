@@ -1,7 +1,5 @@
 // Texture.cpp
 
-// STD Includes
-#include <iostream>
 // SDL Includes
 #include <SDL_image.h>
 // Project Includes
@@ -72,7 +70,7 @@ namespace SDL2
 
 		// Check for errors.
 		if(code < 0)
-			std::cout << "[Texture::Query] Failed to query texturer: " << SDL_GetError() << std::endl;
+			SDL_Log("[Texture::Query] Failed to query texture: %s", SDL_GetError());
 
 		return code;
 	}

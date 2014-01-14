@@ -1,7 +1,5 @@
 // Surface.cpp
 
-// STD Includes
-#include <iostream>
 // SDL Includes
 #include <SDL_image.h>
 // Project Includes
@@ -43,7 +41,7 @@ namespace SDL2
 		// Set a color key on the surface.
 		int code = SDL_SetColorKey(mSurface, SDL_TRUE, pKey);
 		if(code < 0)
-			std::cout << "Failed to set color key to surface: " << SDL_GetError() << std::endl;
+			SDL_Log("[Surface::SetColorKey] Failed to set color key to surface: %s", SDL_GetError());
 
 		return code;
 	}

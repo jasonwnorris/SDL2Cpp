@@ -11,22 +11,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Events.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Point.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Surface.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\SDL2Cpp\Events.hpp" />
     <ClInclude Include="include\SDL2Cpp\Point.hpp" />
     <ClInclude Include="include\SDL2Cpp\Rectangle.hpp" />
     <ClInclude Include="include\SDL2Cpp\Renderer.hpp" />
     <ClInclude Include="include\SDL2Cpp\SDL2.hpp" />
     <ClInclude Include="include\SDL2Cpp\Surface.hpp" />
     <ClInclude Include="include\SDL2Cpp\Texture.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Timer.hpp" />
     <ClInclude Include="include\SDL2Cpp\Window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A0EC76C5-8280-457F-B605-1F5778B63267}</ProjectGuid>
@@ -72,6 +83,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

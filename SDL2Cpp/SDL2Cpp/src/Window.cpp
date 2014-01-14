@@ -37,6 +37,11 @@ namespace SDL2
 	{
 		SDL_SetWindowSize(mWindow, pWidth, pHeight);
 	}
+
+	void Window::Show()
+	{
+		SDL_ShowWindow(mWindow);
+	}
 	
 	void Window::Focus()
 	{

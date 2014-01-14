@@ -3,14 +3,14 @@
 #ifndef __SDL2_SDL2_H__
 #define __SDL2_SDL2_H__
 
-// STD Includes
-#include <iostream>
 // Project Includes
+#include <SDL2Cpp\Events.hpp>
 #include <SDL2Cpp\Point.hpp>
 #include <SDL2Cpp\Rectangle.hpp>
 #include <SDL2Cpp\Renderer.hpp>
 #include <SDL2Cpp\Surface.hpp>
 #include <SDL2Cpp\Texture.hpp>
+#include <SDL2Cpp\Timer.hpp>
 #include <SDL2Cpp\Window.hpp>
 
 namespace SDL2
@@ -19,7 +19,7 @@ namespace SDL2
 	{
 		int code = SDL_Init(pFlags);
 		if(code < 0)
-			std::cout << "Failed initialize SDL2: " << SDL_GetError() << std::endl;
+			SDL_Log("Failed initialize SDL2: %s", SDL_GetError());
 
 		return code;
 	}

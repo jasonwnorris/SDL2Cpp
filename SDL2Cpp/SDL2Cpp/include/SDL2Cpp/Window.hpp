@@ -19,6 +19,7 @@ namespace SDL2
 			void SetTitle(const char* pTitle);
 			void SetIcon(const Surface& pSurface);
 			void Resize(int pWidth, int pHeight);
+			void Show();
 			void Focus();
 			void Restore();
 			void Maximize();
