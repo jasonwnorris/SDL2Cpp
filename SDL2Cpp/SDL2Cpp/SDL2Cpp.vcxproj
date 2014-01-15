@@ -12,7 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Events.cpp" />
+    <ClCompile Include="src\GamePad.cpp" />
+    <ClCompile Include="src\Keyboard.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Mouse.cpp" />
     <ClCompile Include="src\Point.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -22,7 +25,11 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Delegate.hpp" />
     <ClInclude Include="include\SDL2Cpp\Events.hpp" />
+    <ClInclude Include="include\SDL2Cpp\GamePad.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Keyboard.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Mouse.hpp" />
     <ClInclude Include="include\SDL2Cpp\Point.hpp" />
     <ClInclude Include="include\SDL2Cpp\Rectangle.hpp" />
     <ClInclude Include="include\SDL2Cpp\Renderer.hpp" />
