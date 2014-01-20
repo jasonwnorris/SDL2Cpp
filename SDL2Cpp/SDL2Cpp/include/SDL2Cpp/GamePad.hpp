@@ -8,10 +8,10 @@
 
 namespace SDL2
 {
-	friend class Events;
-
 	class GamePad
 	{
+		friend class Events;
+
 		public:
 			GamePad();
 			~GamePad();

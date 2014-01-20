@@ -10,6 +10,9 @@ namespace SDL2
 	{
 		// Create the renderer.
 		mRenderer = SDL_CreateRenderer(pWindow.GetC(), pIndex, pFlags);
+		// Check for errors.
+		if (mRenderer == NULL)
+			SDL_Log("[Renderer::Renderer] Failed to create renderer: %s", SDL_GetError());
 		// Grab current renderer info.
 		SDL_GetRendererInfo(mRenderer, &mInfo);
 	}

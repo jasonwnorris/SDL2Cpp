@@ -32,7 +32,7 @@ namespace SDL2
 			return 0.0f;
 
 		if(mPaused)
-			return mPausedTicks;
+			return (float)mPausedTicks;
 		else
 			return (float)((SDL_GetTicks() - mStartTicks) / 1000.0f);
 	}

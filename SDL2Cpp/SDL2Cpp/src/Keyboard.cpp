@@ -5,6 +5,8 @@
 
 namespace SDL2
 {
+	std::map<SDL_Keycode, bool> Keyboard::mKeys;
+
 	Keyboard::Keyboard()
 	{
 	}
@@ -13,7 +15,7 @@ namespace SDL2
 	{
 	}
 	
-	void SetKey(SDL_Keycode pKey, bool pState)
+	void Keyboard::SetKey(SDL_Keycode pKey, bool pState)
 	{
 		mKeys[pKey] = pState;
 	}

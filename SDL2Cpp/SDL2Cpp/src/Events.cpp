@@ -8,17 +8,55 @@
 
 namespace SDL2
 {
+	Delegate<void> Events::OnQuit;
+	Delegate<void> Events::OnAppTerminating;
+	Delegate<void> Events::OnLowMemory;
+	Delegate<void> Events::OnWillEnterBackground;
+	Delegate<void> Events::OnDidEnterBackground;
+	Delegate<void> Events::OnWillEnterForeground;
+	Delegate<void> Events::OnDidEnterForeground;
+	Delegate<void> Events::OnWindowEvent;
+	Delegate<void> Events::OnSysWMEvent;
+	Delegate<void, SDL_Keycode, Uint16, Uint8> Events::OnKeyDown;
+	Delegate<void, SDL_Keycode, Uint16, Uint8> Events::OnKeyUp;
+	Delegate<void> Events::OnTextEditing;
+	Delegate<void> Events::OnTextInput;
+	Delegate<void> Events::OnMouseMotion;
+	Delegate<void, Uint32, Sint32, Sint32> Events::OnMouseButtonDown;
+	Delegate<void, Uint32, Sint32, Sint32> Events::OnMouseButtonUp;
+	Delegate<void> Events::OnMouseWheel;
+	Delegate<void> Events::OnJoyAxisMotion;
+	Delegate<void> Events::OnJoyBallMotion;
+	Delegate<void> Events::OnJoyHatMotion;
+	Delegate<void> Events::OnJoyBallButtonDown;
+	Delegate<void> Events::OnJoyBallButtonUp;
+	Delegate<void> Events::OnJoyDeviceAdded;
+	Delegate<void> Events::OnJoyDeviceRemoved;
+	Delegate<void> Events::OnControllerAxisMotion;
+	Delegate<void> Events::OnControllerBallButtonDown;
+	Delegate<void> Events::OnControllerBallButtonUp;
+	Delegate<void> Events::OnControllerDeviceAdded;
+	Delegate<void> Events::OnControllerDeviceRemoved;
+	Delegate<void> Events::OnControllerDeviceRemapped;
+	Delegate<void> Events::OnFingerDown;
+	Delegate<void> Events::OnFingerUp;
+	Delegate<void> Events::OnFingerMotion;
+	Delegate<void> Events::OnDollarGesture;
+	Delegate<void> Events::OnDollarRecord;
+	Delegate<void> Events::OnMultiGesture;
+	Delegate<void> Events::OnClipboardUpdate;
+	Delegate<void> Events::OnDropFile;
+	Delegate<void> Events::OnUserEvent;
+	Delegate<void> Events::OnUndefined;
+
+	SDL_Event Events::mEvent;
+
 	Events::Events()
 	{
 	}
 
 	Events::~Events()
 	{
-	}
-
-	bool Events::Poll()
-	{
-		return SDL_PollEvent(&mEvent);
 	}
 
 	void Events::Update()

@@ -10,10 +10,10 @@
 
 namespace SDL2
 {
-	friend class Events;
-
 	class Keyboard
 	{
+		friend class Events;
+
 		public:
 			Keyboard();
 			~Keyboard();

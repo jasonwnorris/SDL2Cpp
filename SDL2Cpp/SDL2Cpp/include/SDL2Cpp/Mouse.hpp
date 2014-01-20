@@ -8,10 +8,10 @@
 
 namespace SDL2
 {
-	friend class Events;
-
 	class Mouse
 	{
+		friend class Events;
+
 		public:
 			Mouse();
 			~Mouse();
