@@ -29,6 +29,18 @@
     <Filter Include="Library\Net\Source">
       <UniqueIdentifier>{f889dd68-8ae1-4215-9fd2-ee66160a3f65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\Audio\Source">
+      <UniqueIdentifier>{bc590967-f62a-4319-a9b9-8cb947cf9f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Audio\Header">
+      <UniqueIdentifier>{dbd4de62-4236-4a96-842b-22a271667c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Font\Header">
+      <UniqueIdentifier>{d52e7b49-b8d1-492f-80d0-7cf08ed764a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Font\Source">
+      <UniqueIdentifier>{ad6452fb-6d31-4ff6-bcd4-76f49854974f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Events.cpp">
@@ -105,6 +117,12 @@
     </ClInclude>
     <ClInclude Include="include\SDL2Cpp\Net\Net.hpp">
       <Filter>Library\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Audio\Audio.hpp">
+      <Filter>Library\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Font\Font.hpp">
+      <Filter>Library\Font</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

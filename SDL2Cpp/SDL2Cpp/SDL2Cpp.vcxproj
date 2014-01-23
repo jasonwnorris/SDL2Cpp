@@ -25,7 +25,9 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\SDL2Cpp\Audio\Audio.hpp" />
     <ClInclude Include="include\SDL2Cpp\Events.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Font\Font.hpp" />
     <ClInclude Include="include\SDL2Cpp\GamePad.hpp" />
     <ClInclude Include="include\SDL2Cpp\Keyboard.hpp" />
     <ClInclude Include="include\SDL2Cpp\Mouse.hpp" />
