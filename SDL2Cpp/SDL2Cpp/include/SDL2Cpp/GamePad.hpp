@@ -13,10 +13,13 @@ namespace SDL2
 		friend class Events;
 
 		public:
+
+
+		private:
 			GamePad();
 			~GamePad();
 
-		private:
+			static void Clear();
 
 	};
 }

@@ -14,6 +14,7 @@ namespace SDL2
 	class Renderer
 	{
 		public:
+			Renderer();
 			Renderer(const Window& pWindow, int pIndex, Uint32 pFlags);
 			~Renderer();
 
@@ -22,6 +23,7 @@ namespace SDL2
 			int SetDrawColor(Uint8 pRed, Uint8 pGreen, Uint8 pBlue, Uint8 pAlpha);
 			int SetBlendMode(SDL_BlendMode pMode);
 
+			bool Initialize(const Window& pWindow, int pIndex, Uint32 pFlags);
 			int Clear();
 			int Draw(const Texture& pTexture, const Rectangle& pDestinationRectangle);
 			int Draw(const Texture& pTexture, const Rectangle& pDestinationRectangle, const Rectangle& pSourceRectangle);

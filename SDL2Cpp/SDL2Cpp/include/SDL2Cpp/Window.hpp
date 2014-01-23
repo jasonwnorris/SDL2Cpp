@@ -11,11 +11,13 @@ namespace SDL2
 	class Window
 	{
 		public:
+			Window();
 			Window(const char* pTitle, int pWidth, int pHeight, Uint32 pFlags);
 			~Window();
 
 			SDL_Window* GetC() const;
 
+			void Initialize(const char* pTitle, int pWidth, int pHeight, Uint32 pFlags);
 			void SetTitle(const char* pTitle);
 			void SetIcon(const Surface& pSurface);
 			void Resize(int pWidth, int pHeight);

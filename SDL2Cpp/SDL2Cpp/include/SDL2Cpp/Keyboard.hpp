@@ -15,13 +15,20 @@ namespace SDL2
 		friend class Events;
 
 		public:
+			static bool IsKeyDown(SDL_Keycode pKey);
+			static bool IsKeyUp(SDL_Keycode pKey);
+			static bool IsKeyPressed(SDL_Keycode pKey);
+			static bool IsKeyReleased(SDL_Keycode pKey);
+
+		private:
 			Keyboard();
 			~Keyboard();
 
-		private:
+			static void Clear();
 			static void SetKey(SDL_Keycode pKey, bool pState);
-
-			static std::map<SDL_Keycode, bool> mKeys;
+			
+			static std::map<SDL_Keycode, bool> sCurrentKeys;
+			static std::map<SDL_Keycode, bool> sPreviousKeys;
 
 	};
 }

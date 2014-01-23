@@ -5,10 +5,14 @@
 
 namespace SDL2
 {
+	Window::Window()
+	{
+		mWindow = NULL;
+	}
+
 	Window::Window(const char* pTitle, int pWidth, int pHeight, Uint32 pFlags)
 	{
-		// Create the window.
-		mWindow = SDL_CreateWindow(pTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, pWidth, pHeight, pFlags);
+		Initialize(pTitle, pWidth, pHeight, pFlags);
 	}
 
 	Window::~Window()
@@ -21,6 +25,12 @@ namespace SDL2
 	{
 		// Return C structure.
 		return mWindow;
+	}
+
+	void Window::Initialize(const char* pTitle, int pWidth, int pHeight, Uint32 pFlags)
+	{
+		// Create the window.
+		mWindow = SDL_CreateWindow(pTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, pWidth, pHeight, pFlags);
 	}
 
 	void Window::SetTitle(const char* pTitle)

@@ -6,15 +6,14 @@
 
 namespace SDL2
 {
+	Renderer::Renderer()
+	{
+		mRenderer = NULL;
+	}
+
 	Renderer::Renderer(const Window& pWindow, int pIndex, Uint32 pFlags)
 	{
-		// Create the renderer.
-		mRenderer = SDL_CreateRenderer(pWindow.GetC(), pIndex, pFlags);
-		// Check for errors.
-		if (mRenderer == NULL)
-			SDL_Log("[Renderer::Renderer] Failed to create renderer: %s", SDL_GetError());
-		// Grab current renderer info.
-		SDL_GetRendererInfo(mRenderer, &mInfo);
+		Initialize(pWindow, pIndex, pFlags);
 	}
 
 	Renderer::~Renderer()
@@ -27,6 +26,19 @@ namespace SDL2
 	{
 		// Return C structure.
 		return mRenderer;
+	}
+	
+	bool Renderer::Initialize(const Window& pWindow, int pIndex, Uint32 pFlags)
+	{
+		// Create the renderer.
+		mRenderer = SDL_CreateRenderer(pWindow.GetC(), pIndex, pFlags);
+		// Check for errors.
+		if(mRenderer == NULL)
+			SDL_Log("[Renderer::Renderer] Failed to create renderer: %s", SDL_GetError());
+		// Grab current renderer info.
+		SDL_GetRendererInfo(mRenderer, &mInfo);
+
+		return mRenderer != NULL;
 	}
 
 	int Renderer::SetDrawColor(Uint8 pRed, Uint8 pGreen, Uint8 pBlue, Uint8 pAlpha)

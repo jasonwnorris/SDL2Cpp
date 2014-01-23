@@ -4,7 +4,11 @@
 #define __SDL2_SDL2_H__
 
 // Project Includes
+#include <SDL2Cpp\Net\Net.hpp>
 #include <SDL2Cpp\Events.hpp>
+#include <SDL2Cpp\GamePad.hpp>
+#include <SDL2Cpp\Keyboard.hpp>
+#include <SDL2Cpp\Mouse.hpp>
 #include <SDL2Cpp\Point.hpp>
 #include <SDL2Cpp\Rectangle.hpp>
 #include <SDL2Cpp\Renderer.hpp>

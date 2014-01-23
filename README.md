@@ -9,3 +9,8 @@ An object-oriented wrapper of the SDL2 library.
 * Surface
 * Rectangle
 * Point
+* Events
+* Keyboard
+* Mouse
+* GamePad
+* Timer

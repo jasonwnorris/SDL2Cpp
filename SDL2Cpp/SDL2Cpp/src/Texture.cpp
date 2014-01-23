@@ -7,28 +7,24 @@
 
 namespace SDL2
 {
+	Texture::Texture()
+	{
+		mTexture = NULL;
+	}
+
 	Texture::Texture(const Renderer& pRenderer, Uint32 pFormat, int pAccess, int pWidth, int pHeight)
 	{
-		// Create the texture.
-		mTexture = SDL_CreateTexture(pRenderer.GetC(), pFormat, pAccess, pWidth, pHeight);
-
-		Query();
+		Create(pRenderer, pFormat, pAccess, pWidth, pHeight);
 	}
 
 	Texture::Texture(const Renderer& pRenderer, const Surface& pSurface)
 	{
-		// Create the texture.
-		mTexture = SDL_CreateTextureFromSurface(pRenderer.GetC(), pSurface.GetC());
-
-		Query();
+		Create(pRenderer, pSurface);
 	}
 	
 	Texture::Texture(const Renderer& pRenderer, const char* pFilename)
 	{
-		// Create the texture from a loaded image file.
-		mTexture = IMG_LoadTexture(pRenderer.GetC(), pFilename);
-
-		Query();
+		Load(pRenderer, pFilename);
 	}
 
 	Texture::~Texture()
@@ -61,6 +57,30 @@ namespace SDL2
 	int Texture::GetHeight() const
 	{
 		return mHeight;
+	}
+			
+	bool Texture::Create(const Renderer& pRenderer, Uint32 pFormat, int pAccess, int pWidth, int pHeight)
+	{
+		// Create the texture.
+		mTexture = SDL_CreateTexture(pRenderer.GetC(), pFormat, pAccess, pWidth, pHeight);
+
+		return Query() == 0;
+	}
+
+	bool Texture::Create(const Renderer& pRenderer, const Surface& pSurface)
+	{
+		// Create the texture.
+		mTexture = SDL_CreateTextureFromSurface(pRenderer.GetC(), pSurface.GetC());
+
+		return Query() == 0;
+	}
+
+	bool Texture::Load(const Renderer& pRenderer, const char* pFilename)
+	{
+		// Create the texture from a loaded image file.
+		mTexture = IMG_LoadTexture(pRenderer.GetC(), pFilename);
+
+		return Query() == 0;
 	}
 	
 	int Texture::Query()

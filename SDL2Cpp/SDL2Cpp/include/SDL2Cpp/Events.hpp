@@ -5,8 +5,6 @@
 
 // SDL Includes
 #include <SDL.h>
-// Project Includes
-#include <Delegate.hpp>
 
 namespace SDL2
 {
@@ -16,52 +14,59 @@ namespace SDL2
 			Events();
 			~Events();
 
-			static bool Poll();
-			static void Update();
+			void Poll();
 
-			static Delegate<void> OnQuit;
-			static Delegate<void> OnAppTerminating;
-			static Delegate<void> OnLowMemory;
-			static Delegate<void> OnWillEnterBackground;
-			static Delegate<void> OnDidEnterBackground;
-			static Delegate<void> OnWillEnterForeground;
-			static Delegate<void> OnDidEnterForeground;
-			static Delegate<void> OnWindowEvent;
-			static Delegate<void> OnSysWMEvent;
-			static Delegate<void, SDL_Keycode, Uint16, Uint8> OnKeyDown;
-			static Delegate<void, SDL_Keycode, Uint16, Uint8> OnKeyUp;
-			static Delegate<void> OnTextEditing;
-			static Delegate<void> OnTextInput;
-			static Delegate<void> OnMouseMotion;
-			static Delegate<void, Uint32, Sint32, Sint32> OnMouseButtonDown;
-			static Delegate<void, Uint32, Sint32, Sint32> OnMouseButtonUp;
-			static Delegate<void> OnMouseWheel;
-			static Delegate<void> OnJoyAxisMotion;
-			static Delegate<void> OnJoyBallMotion;
-			static Delegate<void> OnJoyHatMotion;
-			static Delegate<void> OnJoyBallButtonDown;
-			static Delegate<void> OnJoyBallButtonUp;
-			static Delegate<void> OnJoyDeviceAdded;
-			static Delegate<void> OnJoyDeviceRemoved;
-			static Delegate<void> OnControllerAxisMotion;
-			static Delegate<void> OnControllerBallButtonDown;
-			static Delegate<void> OnControllerBallButtonUp;
-			static Delegate<void> OnControllerDeviceAdded;
-			static Delegate<void> OnControllerDeviceRemoved;
-			static Delegate<void> OnControllerDeviceRemapped;
-			static Delegate<void> OnFingerDown;
-			static Delegate<void> OnFingerUp;
-			static Delegate<void> OnFingerMotion;
-			static Delegate<void> OnDollarGesture;
-			static Delegate<void> OnDollarRecord;
-			static Delegate<void> OnMultiGesture;
-			static Delegate<void> OnClipboardUpdate;
-			static Delegate<void> OnDropFile;
-			static Delegate<void> OnUserEvent;
-			static Delegate<void> OnUndefined;
+			virtual void OnQuit();
+			virtual void OnAppTerminating();
+			virtual void OnAppLowMemory();
+			virtual void OnAppWillEnterBackground();
+			virtual void OnAppDidEnterBackground();
+			virtual void OnAppWillEnterForeground();
+			virtual void OnAppDidEnterForeground();
+			virtual void OnWindowEvent();
+			virtual void OnSysWMEvent();
+			virtual void OnKeyDown(SDL_Keycode pKey, Uint16 pMod, Uint8 pRepeat);
+			virtual void OnKeyUp(SDL_Keycode pKey, Uint16 pMod, Uint8 pRepeat);
+			virtual void OnTextEditing();
+			virtual void OnTextInput();
+			virtual void OnMouseMotion(Sint32 pX, Sint32 pY, Sint32 pRelativeX, Sint32 pRelativeY);
+			virtual void OnMouseLeftButtonDown(Sint32 pX, Sint32 pY);
+			virtual void OnMouseLeftButtonUp(Sint32 pX, Sint32 pY);
+			virtual void OnMouseRightButtonDown(Sint32 pX, Sint32 pY);
+			virtual void OnMouseRightButtonUp(Sint32 pX, Sint32 pY);
+			virtual void OnMouseMiddleButtonDown(Sint32 pX, Sint32 pY);
+			virtual void OnMouseMiddleButtonUp(Sint32 pX, Sint32 pY);
+			virtual void OnMouseExtra1ButtonDown(Sint32 pX, Sint32 pY);
+			virtual void OnMouseExtra1ButtonUp(Sint32 pX, Sint32 pY);
+			virtual void OnMouseExtra2ButtonDown(Sint32 pX, Sint32 pY);
+			virtual void OnMouseExtra2ButtonUp(Sint32 pX, Sint32 pY);
+			virtual void OnMouseWheel(Sint32 pX, Sint32 pY);
+			virtual void OnJoyAxisMotion();
+			virtual void OnJoyBallMotion();
+			virtual void OnJoyHatMotion();
+			virtual void OnJoyBallButtonDown();
+			virtual void OnJoyBallButtonUp();
+			virtual void OnJoyDeviceAdded();
+			virtual void OnJoyDeviceRemoved();
+			virtual void OnControllerAxisMotion(Uint8 pAxis, Sint16 pValue, SDL_JoystickID pWhich);
+			virtual void OnControllerButtonDown(Uint8 pButton, SDL_JoystickID pWhich);
+			virtual void OnControllerButtonUp(Uint8 pButton, SDL_JoystickID pWhich);
+			virtual void OnControllerDeviceAdded(SDL_JoystickID pWhich);
+			virtual void OnControllerDeviceRemoved(SDL_JoystickID pWhich);
+			virtual void OnControllerDeviceRemapped(SDL_JoystickID pWhich);
+			virtual void OnFingerDown();
+			virtual void OnFingerUp();
+			virtual void OnFingerMotion();
+			virtual void OnDollarGesture();
+			virtual void OnDollarRecord();
+			virtual void OnMultiGesture();
+			virtual void OnClipboardUpdate();
+			virtual void OnDropFile();
+			virtual void OnUserEvent();
+			virtual void OnUndefined();
 
 		private:
-			static SDL_Event mEvent;
+			SDL_Event mEvent;
 	};
 }
 

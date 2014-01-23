@@ -8,49 +8,6 @@
 
 namespace SDL2
 {
-	Delegate<void> Events::OnQuit;
-	Delegate<void> Events::OnAppTerminating;
-	Delegate<void> Events::OnLowMemory;
-	Delegate<void> Events::OnWillEnterBackground;
-	Delegate<void> Events::OnDidEnterBackground;
-	Delegate<void> Events::OnWillEnterForeground;
-	Delegate<void> Events::OnDidEnterForeground;
-	Delegate<void> Events::OnWindowEvent;
-	Delegate<void> Events::OnSysWMEvent;
-	Delegate<void, SDL_Keycode, Uint16, Uint8> Events::OnKeyDown;
-	Delegate<void, SDL_Keycode, Uint16, Uint8> Events::OnKeyUp;
-	Delegate<void> Events::OnTextEditing;
-	Delegate<void> Events::OnTextInput;
-	Delegate<void> Events::OnMouseMotion;
-	Delegate<void, Uint32, Sint32, Sint32> Events::OnMouseButtonDown;
-	Delegate<void, Uint32, Sint32, Sint32> Events::OnMouseButtonUp;
-	Delegate<void> Events::OnMouseWheel;
-	Delegate<void> Events::OnJoyAxisMotion;
-	Delegate<void> Events::OnJoyBallMotion;
-	Delegate<void> Events::OnJoyHatMotion;
-	Delegate<void> Events::OnJoyBallButtonDown;
-	Delegate<void> Events::OnJoyBallButtonUp;
-	Delegate<void> Events::OnJoyDeviceAdded;
-	Delegate<void> Events::OnJoyDeviceRemoved;
-	Delegate<void> Events::OnControllerAxisMotion;
-	Delegate<void> Events::OnControllerBallButtonDown;
-	Delegate<void> Events::OnControllerBallButtonUp;
-	Delegate<void> Events::OnControllerDeviceAdded;
-	Delegate<void> Events::OnControllerDeviceRemoved;
-	Delegate<void> Events::OnControllerDeviceRemapped;
-	Delegate<void> Events::OnFingerDown;
-	Delegate<void> Events::OnFingerUp;
-	Delegate<void> Events::OnFingerMotion;
-	Delegate<void> Events::OnDollarGesture;
-	Delegate<void> Events::OnDollarRecord;
-	Delegate<void> Events::OnMultiGesture;
-	Delegate<void> Events::OnClipboardUpdate;
-	Delegate<void> Events::OnDropFile;
-	Delegate<void> Events::OnUserEvent;
-	Delegate<void> Events::OnUndefined;
-
-	SDL_Event Events::mEvent;
-
 	Events::Events()
 	{
 	}
@@ -59,135 +16,224 @@ namespace SDL2
 	{
 	}
 
-	void Events::Update()
+	void Events::Poll()
 	{
+		Keyboard::Clear();
+		Mouse::Clear();
+		GamePad::Clear();
+
 		while (SDL_PollEvent(&mEvent))
 		{
 			switch (mEvent.type)
 			{
 				case SDL_QUIT:
-					OnQuit.Execute();
+					OnQuit();
 					break;
 				case SDL_APP_TERMINATING:
-					OnAppTerminating.Execute();
+					OnAppTerminating();
 					break;
 				case SDL_APP_LOWMEMORY:
-					OnLowMemory.Execute();
+					OnAppLowMemory();
 					break;
 				case SDL_APP_WILLENTERBACKGROUND:
-					OnWillEnterBackground.Execute();
+					OnAppWillEnterBackground();
 					break;
 				case SDL_APP_DIDENTERBACKGROUND:
-					OnDidEnterBackground.Execute();
+					OnAppDidEnterBackground();
 					break;
 				case SDL_APP_WILLENTERFOREGROUND:
-					OnWillEnterForeground.Execute();
+					OnAppWillEnterForeground();
 					break;
 				case SDL_APP_DIDENTERFOREGROUND:
-					OnDidEnterForeground.Execute();
+					OnAppDidEnterForeground();
 					break;
 				case SDL_WINDOWEVENT:
-					OnWindowEvent.Execute();
+					OnWindowEvent();
 					break;
 				case SDL_SYSWMEVENT:
-					OnSysWMEvent.Execute();
+					OnSysWMEvent();
 					break;
 				case SDL_KEYDOWN:
-					OnKeyDown.Execute(mEvent.key.keysym.sym, mEvent.key.keysym.mod, mEvent.key.repeat);
+					OnKeyDown(mEvent.key.keysym.sym, mEvent.key.keysym.mod, mEvent.key.repeat);
 					Keyboard::SetKey(mEvent.key.keysym.sym, true);
 					break;
 				case SDL_KEYUP:
-					OnKeyUp.Execute(mEvent.key.keysym.sym, mEvent.key.keysym.mod, mEvent.key.repeat);
+					OnKeyUp(mEvent.key.keysym.sym, mEvent.key.keysym.mod, mEvent.key.repeat);
 					Keyboard::SetKey(mEvent.key.keysym.sym, false);
 					break;
 				case SDL_TEXTEDITING:
-					OnTextEditing.Execute();
+					OnTextEditing();
 					break;
 				case SDL_TEXTINPUT:
-					OnTextInput.Execute();
+					OnTextInput();
 					break;
 				case SDL_MOUSEMOTION:
-					OnMouseMotion.Execute();
+					OnMouseMotion(mEvent.motion.x, mEvent.motion.y, mEvent.motion.xrel, mEvent.motion.yrel);
+					Mouse::SetPosition(mEvent.motion.x, mEvent.motion.y);
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					OnMouseButtonDown.Execute(mEvent.button.which, mEvent.button.x, mEvent.button.y);
+					switch(mEvent.button.button)
+					{
+						case SDL_BUTTON_LEFT:
+							OnMouseLeftButtonDown(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_RIGHT:
+							OnMouseRightButtonDown(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_MIDDLE:
+							OnMouseMiddleButtonDown(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_X1:
+							OnMouseLeftButtonDown(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_X2:
+							OnMouseLeftButtonDown(mEvent.button.x, mEvent.button.y);
+							break;
+					}
 					break;
 				case SDL_MOUSEBUTTONUP:
-					OnMouseButtonUp.Execute(mEvent.button.which, mEvent.button.x, mEvent.button.y);
+					switch(mEvent.button.button)
+					{
+						case SDL_BUTTON_LEFT:
+							OnMouseLeftButtonUp(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_RIGHT:
+							OnMouseRightButtonUp(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_MIDDLE:
+							OnMouseMiddleButtonUp(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_X1:
+							OnMouseLeftButtonUp(mEvent.button.x, mEvent.button.y);
+							break;
+						case SDL_BUTTON_X2:
+							OnMouseLeftButtonUp(mEvent.button.x, mEvent.button.y);
+							break;
+					}
 					break;
 				case SDL_MOUSEWHEEL:
-					OnMouseWheel.Execute();
+					OnMouseWheel(mEvent.wheel.x, mEvent.wheel.y);
+					Mouse::SetScroll(mEvent.wheel.x, mEvent.wheel.y);
 					break;
 				case SDL_JOYAXISMOTION:
-					OnJoyAxisMotion.Execute();
+					OnJoyAxisMotion();
 					break;
 				case SDL_JOYBALLMOTION:
-					OnJoyBallMotion.Execute();
+					OnJoyBallMotion();
 					break;
 				case SDL_JOYHATMOTION:
-					OnJoyHatMotion.Execute();
+					OnJoyHatMotion();
 					break;
 				case SDL_JOYBUTTONDOWN:
-					OnJoyBallButtonDown.Execute();
+					OnJoyBallButtonDown();
 					break;
 				case SDL_JOYBUTTONUP:
-					OnJoyBallButtonUp.Execute();
+					OnJoyBallButtonUp();
 					break;
 				case SDL_JOYDEVICEADDED:
-					OnJoyDeviceAdded.Execute();
+					OnJoyDeviceAdded();
 					break;
 				case SDL_JOYDEVICEREMOVED:
-					OnJoyDeviceRemoved.Execute();
+					OnJoyDeviceRemoved();
 					break;
 				case SDL_CONTROLLERAXISMOTION:
-					OnControllerAxisMotion.Execute();
+					OnControllerAxisMotion(mEvent.caxis.axis, mEvent.caxis.value, mEvent.caxis.which);
 					break;
 				case SDL_CONTROLLERBUTTONDOWN:
-					OnControllerBallButtonDown.Execute();
+					OnControllerButtonDown(mEvent.cbutton.button, mEvent.cbutton.which);
 					break;
 				case SDL_CONTROLLERBUTTONUP:
-					OnControllerBallButtonUp.Execute();
+					OnControllerButtonUp(mEvent.cbutton.button, mEvent.cbutton.which);
 					break;
 				case SDL_CONTROLLERDEVICEADDED:
-					OnControllerDeviceAdded.Execute();
+					OnControllerDeviceAdded(mEvent.cdevice.which);
 					break;
 				case SDL_CONTROLLERDEVICEREMOVED:
-					OnControllerDeviceRemoved.Execute();
+					OnControllerDeviceRemoved(mEvent.cdevice.which);
 					break;
 				case SDL_CONTROLLERDEVICEREMAPPED:
-					OnControllerDeviceRemapped.Execute();
+					OnControllerDeviceRemapped(mEvent.cdevice.which);
 					break;
 				case SDL_FINGERDOWN:
-					OnFingerDown.Execute();
+					OnFingerDown();
 					break;
 				case SDL_FINGERUP:
-					OnFingerUp.Execute();
+					OnFingerUp();
 					break;
 				case SDL_FINGERMOTION:
-					OnFingerMotion.Execute();
+					OnFingerMotion();
 					break;
 				case SDL_DOLLARGESTURE:
-					OnDollarGesture.Execute();
+					OnDollarGesture();
 					break;
 				case SDL_DOLLARRECORD:
-					OnDollarRecord.Execute();
+					OnDollarRecord();
 					break;
 				case SDL_MULTIGESTURE:
-					OnMultiGesture.Execute();
+					OnMultiGesture();
 					break;
 				case SDL_CLIPBOARDUPDATE:
-					OnClipboardUpdate.Execute();
+					OnClipboardUpdate();
 					break;
 				case SDL_DROPFILE:
-					OnDropFile.Execute();
+					OnDropFile();
 					break;
 				case SDL_USEREVENT:
-					OnUserEvent.Execute();
+					OnUserEvent();
 					break;
 				default:
-					OnUndefined.Execute();
+					OnUndefined();
 					break;
 			}
 		}
 	}
+
+	void Events::OnQuit() { }
+	void Events::OnAppTerminating() { }
+	void Events::OnAppLowMemory() { }
+	void Events::OnAppWillEnterBackground() { }
+	void Events::OnAppDidEnterBackground() { }
+	void Events::OnAppWillEnterForeground() { }
+	void Events::OnAppDidEnterForeground() { }
+	void Events::OnWindowEvent() { }
+	void Events::OnSysWMEvent() { }
+	void Events::OnKeyDown(SDL_Keycode pKey, Uint16 pMod, Uint8 pRepeat) { }
+	void Events::OnKeyUp(SDL_Keycode pKey, Uint16 pMod, Uint8 pRepeat) { }
+	void Events::OnTextEditing() { }
+	void Events::OnTextInput() { }
+	void Events::OnMouseMotion(Sint32 pX, Sint32 pY, Sint32 pRelativeX, Sint32 pRelativeY) { }
+	void Events::OnMouseLeftButtonDown(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseLeftButtonUp(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseRightButtonDown(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseRightButtonUp(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseMiddleButtonDown(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseMiddleButtonUp(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseExtra1ButtonDown(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseExtra1ButtonUp(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseExtra2ButtonDown(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseExtra2ButtonUp(Sint32 pX, Sint32 pY) { }
+	void Events::OnMouseWheel(Sint32 pX, Sint32 pY) { }
+	void Events::OnJoyAxisMotion() { }
+	void Events::OnJoyBallMotion() { }
+	void Events::OnJoyHatMotion() { }
+	void Events::OnJoyBallButtonDown() { }
+	void Events::OnJoyBallButtonUp() { }
+	void Events::OnJoyDeviceAdded() { }
+	void Events::OnJoyDeviceRemoved() { }
+	void Events::OnControllerAxisMotion(Uint8 pAxis, Sint16 pValue, SDL_JoystickID pWhich) { }
+	void Events::OnControllerButtonDown(Uint8 pButton, SDL_JoystickID pWhich) { }
+	void Events::OnControllerButtonUp(Uint8 pButton, SDL_JoystickID pWhich) { }
+	void Events::OnControllerDeviceAdded(SDL_JoystickID pWhich) { }
+	void Events::OnControllerDeviceRemoved(SDL_JoystickID pWhich) { }
+	void Events::OnControllerDeviceRemapped(SDL_JoystickID pWhich) { }
+	void Events::OnFingerDown() { }
+	void Events::OnFingerUp() { }
+	void Events::OnFingerMotion() { }
+	void Events::OnDollarGesture() { }
+	void Events::OnDollarRecord() { }
+	void Events::OnMultiGesture() { }
+	void Events::OnClipboardUpdate() { }
+	void Events::OnDropFile() { }
+	void Events::OnUserEvent() { }
+	void Events::OnUndefined() { }
 }

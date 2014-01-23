@@ -1,92 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Library">
+      <UniqueIdentifier>{294698dc-78d2-4c9e-ae74-5d2885f6943e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Library\Audio">
+      <UniqueIdentifier>{30528a2c-9ca6-48a7-ab0a-15096a260413}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
+    <Filter Include="Library\Font">
+      <UniqueIdentifier>{205dd82b-0d8b-40a3-9d60-e6884d5834a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Core">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Library\Core\Header">
+      <UniqueIdentifier>{26176c8c-3ba9-48f8-8d5e-5c1f096fe4f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Core\Source">
+      <UniqueIdentifier>{1633bce0-b70e-4ffc-8b13-045a6c08fc65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Net">
+      <UniqueIdentifier>{6d1705ab-2e02-4cb5-adf2-1ebce31e2b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Net\Header">
+      <UniqueIdentifier>{e60cc081-6e53-4fd0-ad66-52541e0c823f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Net\Source">
+      <UniqueIdentifier>{f889dd68-8ae1-4215-9fd2-ee66160a3f65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Surface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Events.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Library\Core\Source</Filter>
     </ClCompile>
-    <ClCompile Include="src\Timer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Window.cpp">
+      <Filter>Library\Core\Source</Filter>
     </ClCompile>
     <ClCompile Include="src\GamePad.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Library\Core\Source</Filter>
     </ClCompile>
     <ClCompile Include="src\Keyboard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Library\Core\Source</Filter>
     </ClCompile>
     <ClCompile Include="src\Mouse.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Library\Core\Source</Filter>
     </ClCompile>
+    <ClCompile Include="src\Point.cpp">
+      <Filter>Library\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rectangle.cpp">
+      <Filter>Library\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer.cpp">
+      <Filter>Library\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Surface.cpp">
+      <Filter>Library\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>Library\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Timer.cpp">
+      <Filter>Library\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\SDL2Cpp\Window.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SDL2Cpp\Renderer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SDL2Cpp\SDL2.hpp" />
-    <ClInclude Include="include\SDL2Cpp\Texture.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SDL2Cpp\Rectangle.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SDL2Cpp\Surface.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SDL2Cpp\Point.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\SDL2Cpp\SDL2.hpp">
+      <Filter>Library\Core</Filter>
     </ClInclude>
     <ClInclude Include="include\SDL2Cpp\Events.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Library\Core\Header</Filter>
     </ClInclude>
-    <ClInclude Include="include\SDL2Cpp\Timer.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\SDL2Cpp\Window.hpp">
+      <Filter>Library\Core\Header</Filter>
     </ClInclude>
     <ClInclude Include="include\SDL2Cpp\GamePad.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Library\Core\Header</Filter>
     </ClInclude>
     <ClInclude Include="include\SDL2Cpp\Keyboard.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Library\Core\Header</Filter>
     </ClInclude>
     <ClInclude Include="include\SDL2Cpp\Mouse.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Library\Core\Header</Filter>
     </ClInclude>
-    <ClInclude Include="include\Delegate.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\SDL2Cpp\Point.hpp">
+      <Filter>Library\Core\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Rectangle.hpp">
+      <Filter>Library\Core\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Renderer.hpp">
+      <Filter>Library\Core\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Surface.hpp">
+      <Filter>Library\Core\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Texture.hpp">
+      <Filter>Library\Core\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Timer.hpp">
+      <Filter>Library\Core\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL2Cpp\Net\Net.hpp">
+      <Filter>Library\Net</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

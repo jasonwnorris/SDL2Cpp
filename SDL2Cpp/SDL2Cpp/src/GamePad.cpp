@@ -12,4 +12,8 @@ namespace SDL2
 	GamePad::~GamePad()
 	{
 	}
+	
+	void GamePad::Clear()
+	{
+	}
 }

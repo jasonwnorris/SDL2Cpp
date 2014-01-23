@@ -5,44 +5,112 @@
 // Project Includes
 #include <SDL2Cpp\SDL2.hpp>
 
-void keyHit(SDL_Keycode key, Uint16 sym, Uint8 mod)
+class Game : public SDL2::Events
 {
-	SDL_Log("Key: %s", SDL_GetKeyName(key));
-}
+	public:
+		Game()
+		{
+			SDL2::Initialize(SDL_INIT_EVERYTHING);
+
+			mWindow.Initialize("SDL2Cpp", 800, 600, SDL_WINDOW_OPENGL);
+			mRenderer.Initialize(mWindow, -1, SDL_RENDERER_SOFTWARE);
+			mTexture.Load(mRenderer, "asset/img/image.png");
+			
+			mFrameCount = 0;
+			mFrameRate = 30;
+			mCapFPS = false;
+			mRunning = true;
+		}
+
+		~Game()
+		{
+			SDL2::Finalize();
+		}
+
+		void Run()
+		{
+			mTimer.Start();
+
+			while(mRunning)
+			{
+				Poll();
+				Update();
+				Render();
+			}
+		}
+
+		void Update()
+		{
+			mFPS.Start();
+			mFrameCount++;
+
+			if(mCapFPS && mFPS.GetTicks() < 1000 / mFrameRate)
+				SDL_Delay(1000 / mFrameRate - mFPS.GetTicks());
+			
+			if(SDL2::Keyboard::IsKeyPressed(SDLK_ESCAPE))
+			{
+				mRunning = false;
+			}
+
+			if(SDL2::Keyboard::IsKeyPressed(SDLK_SPACE))
+			{
+				mCapFPS = !mCapFPS;
+				mWindow.SetTitle(mCapFPS ? "SDL2Cpp : 30 FPS" : "SDL2Cpp : Unlimited FPS");
+			}
+
+			if(SDL2::Mouse::IsScrolledDown())
+			{
+				SDL_Log("Scroll DOWN");
+			}
+			
+			if(SDL2::Mouse::IsScrolledUp())
+			{
+				SDL_Log("Scroll UP");
+			}
+
+			int x;
+			int y;
+			SDL2::Mouse::GetPosition(x, y);
+
+			//SDL_Log("Mouse: %i, %i", x, y);
+			//SDL_Log("Frame: %i | ElapsedTime: %.2f | Delta Time: %.4f", mFrameCount, mTimer.GetElapsedTime(), mTimer.GetDeltaTime());
+		}
+
+		void Render()
+		{
+			mRenderer.SetDrawColor(0, 0, 0, 255);
+			mRenderer.Clear();
+			mRenderer.Draw(mTexture, SDL2::Rectangle(rand() % 800, rand() % 600, 200, 200));
+			for(int i = 0; i < 100; ++i)
+			{
+				mRenderer.SetDrawColor(rand() % 255, rand() % 255, rand() % 255, 255);
+				mRenderer.DrawLine(rand() % 800, rand() % 600, rand() % 800, rand() % 600);
+			}
+			mRenderer.Show();
+		}
+
+	private:
+		virtual void OnQuit()
+		{
+			mRunning = false;
+		}
+
+	private:
+		SDL2::Window mWindow;
+		SDL2::Renderer mRenderer;
+		SDL2::Texture mTexture;
+		SDL2::Timer mTimer;
+		SDL2::Timer mFPS;
+		int mFrameCount;
+		int mFrameRate;
+		bool mCapFPS;
+		bool mRunning;
+};
 
 int main(int argc, char** argv)
 {
-	SDL2::Initialize(SDL_INIT_EVERYTHING);
-	SDL2::Window window("SDL2Cpp", 800, 600, SDL_WINDOW_OPENGL);
-	SDL2::Renderer renderer(window, -1, SDL_RENDERER_SOFTWARE);
-	SDL2::Texture texture(renderer, "asset/img/image.png");
-	SDL2::Timer timer;
-
-	bool running = true;
-
-	SDL2::Events::OnQuit.Register([&running]() { running = false; });
-	SDL2::Events::OnKeyDown.Register(keyHit);
-
-	while(running)
-	{
-		SDL2::Events::Update();
-
-		renderer.SetDrawColor(0, 0, 0, 255);
-		renderer.Clear();
-		renderer.Draw(texture, SDL2::Rectangle(rand() % 800, rand() % 600, 200, 200));
-		for(int i = 0; i < 100; ++i)
-		{
-			renderer.SetDrawColor(rand() % 255, rand() % 255, rand() % 255, 255);
-			renderer.DrawLine(rand() % 800, rand() % 600, rand() % 800, rand() % 600);
-		}
-		renderer.Show();
-
-		//SDL_Log("ElapsedTime: %.6f | Delta Time: %.6f", timer.GetElapsedTime(), timer.GetDeltaTime());
-
-		SDL_Delay(100);
-	}
-
-	SDL2::Finalize();
+	Game game;
+	game.Run();
 
 	return 0;
 }

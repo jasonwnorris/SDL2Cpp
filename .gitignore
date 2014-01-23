@@ -82,3 +82,6 @@ packages/
 
 #Test files
 *.testsettings
+
+#Assets
+[Aa]ssets*/

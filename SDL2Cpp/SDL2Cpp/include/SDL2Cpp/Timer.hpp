@@ -16,6 +16,7 @@ namespace SDL2
 
 			float GetDeltaTime();
 			float GetElapsedTime();
+			int GetTicks();
 
 			void Start();
 			void Stop();

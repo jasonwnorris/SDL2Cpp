@@ -12,6 +12,7 @@ namespace SDL2
 	class Texture
 	{
 		public:
+			Texture();
 			Texture(const Renderer& pRenderer, Uint32 pFormat, int pAccess, int pWidth, int pHeight);
 			Texture(const Renderer& pRenderer, const Surface& pSurface);
 			Texture(const Renderer& pRenderer, const char* pFilename);
@@ -22,6 +23,10 @@ namespace SDL2
 			int GetAccess() const;
 			int GetWidth() const;
 			int GetHeight() const;
+			
+			bool Create(const Renderer& pRenderer, Uint32 pFormat, int pAccess, int pWidth, int pHeight);
+			bool Create(const Renderer& pRenderer, const Surface& pSurface);
+			bool Load(const Renderer& pRenderer, const char* pFilename);
 
 		private:
 			int Query();

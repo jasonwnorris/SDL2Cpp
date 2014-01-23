@@ -7,7 +7,7 @@ namespace SDL2
 {
 	Timer::Timer()
 	{
-		Start();
+		Stop();
 	}
 
 	Timer::~Timer()
@@ -35,6 +35,17 @@ namespace SDL2
 			return (float)mPausedTicks;
 		else
 			return (float)((SDL_GetTicks() - mStartTicks) / 1000.0f);
+	}
+	
+	int Timer::GetTicks()
+	{
+		if(!mStarted)
+			return 0;
+
+		if(mPaused)
+			return mPausedTicks;
+		else
+			return (SDL_GetTicks() - mStartTicks);
 	}
 
 	void Timer::Start()
