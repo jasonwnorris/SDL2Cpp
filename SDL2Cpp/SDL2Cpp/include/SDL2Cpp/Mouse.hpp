@@ -21,6 +21,8 @@ namespace SDL2
             static bool IsButtonReleased(int pButton);
             static bool IsScrolledUp();
             static bool IsScrolledDown();
+			static void Show();
+			static void Hide();
 
 		private:
 			Mouse();

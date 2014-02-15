@@ -11,33 +11,51 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Address.cpp" />
+    <ClCompile Include="src\Audio.cpp" />
     <ClCompile Include="src\Events.cpp" />
     <ClCompile Include="src\GamePad.cpp" />
+    <ClCompile Include="src\Joystick.cpp" />
     <ClCompile Include="src\Keyboard.cpp" />
-    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Mouse.cpp" />
+    <ClCompile Include="src\Music.cpp" />
     <ClCompile Include="src\Point.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\SocketSet.cpp" />
+    <ClCompile Include="src\SoundEffect.cpp" />
     <ClCompile Include="src\Surface.cpp" />
+    <ClCompile Include="src\System.cpp" />
+    <ClCompile Include="src\TcpSocket.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Thread.cpp" />
     <ClCompile Include="src\Timer.cpp" />
+    <ClCompile Include="src\UdpSocket.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\SDL2Cpp\Audio\Audio.hpp" />
     <ClInclude Include="include\SDL2Cpp\Events.hpp" />
     <ClInclude Include="include\SDL2Cpp\Font\Font.hpp" />
     <ClInclude Include="include\SDL2Cpp\GamePad.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Joystick.hpp" />
     <ClInclude Include="include\SDL2Cpp\Keyboard.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Mixer\Audio.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Mixer\Music.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Mixer\SoundEffect.hpp" />
     <ClInclude Include="include\SDL2Cpp\Mouse.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Net\Address.hpp" />
     <ClInclude Include="include\SDL2Cpp\Net\Net.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Net\SocketSet.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Net\TcpSocket.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Net\UdpSocket.hpp" />
     <ClInclude Include="include\SDL2Cpp\Point.hpp" />
     <ClInclude Include="include\SDL2Cpp\Rectangle.hpp" />
     <ClInclude Include="include\SDL2Cpp\Renderer.hpp" />
     <ClInclude Include="include\SDL2Cpp\SDL2.hpp" />
     <ClInclude Include="include\SDL2Cpp\Surface.hpp" />
+    <ClInclude Include="include\SDL2Cpp\System.hpp" />
     <ClInclude Include="include\SDL2Cpp\Texture.hpp" />
+    <ClInclude Include="include\SDL2Cpp\Thread.hpp" />
     <ClInclude Include="include\SDL2Cpp\Timer.hpp" />
     <ClInclude Include="include\SDL2Cpp\Window.hpp" />
   </ItemGroup>
@@ -55,7 +73,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -78,12 +96,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Libraries\SDL_2_0\include;$(SolutionDir)SDL2Cpp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\SDL_2_0\lib\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Libraries\SDL_2_0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\Libraries\SDL_2_0\include;$(SolutionDir)SDL2Cpp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\SDL_2_0\lib\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Libraries\SDL_2_0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,7 +115,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_net.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_net.lib;OpenGL32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>

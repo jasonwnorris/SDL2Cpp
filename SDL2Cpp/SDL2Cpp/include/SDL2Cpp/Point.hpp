@@ -14,6 +14,19 @@ namespace SDL2
 			Point(int pX, int pY);
 			~Point();
 
+			bool operator==(const Point& pOther);
+
+			SDL_Point GetC() const;
+			int GetX() const;
+			int GetY() const;
+
+			void Set(int pX, int pY);
+			void SetX(int pX);
+			void SetY(int pY);
+
+		public:
+			static SDL_Point Zero;
+
 		private:
 			SDL_Point mPoint;
 	};

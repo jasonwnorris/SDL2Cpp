@@ -93,4 +93,14 @@ namespace SDL2
 			sScrollDown = true;
 		}
 	}
+
+	void Mouse::Show()
+	{
+		SDL_ShowCursor(SDL_ENABLE);
+	}
+
+	void Mouse::Hide()
+	{
+		SDL_ShowCursor(SDL_DISABLE);
+	}
 }

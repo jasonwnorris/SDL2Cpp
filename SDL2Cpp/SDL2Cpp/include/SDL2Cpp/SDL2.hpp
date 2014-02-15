@@ -4,6 +4,8 @@
 #define __SDL2_SDL2_H__
 
 // Project Includes
+#include <SDL2Cpp\Mixer\Audio.hpp>
+#include <SDL2Cpp\Font\Font.hpp>
 #include <SDL2Cpp\Net\Net.hpp>
 #include <SDL2Cpp\Events.hpp>
 #include <SDL2Cpp\GamePad.hpp>
@@ -19,13 +21,13 @@
 
 namespace SDL2
 {
-	int Initialize(Uint32 pFlags)
+	bool Initialize(Uint32 pFlags)
 	{
 		int code = SDL_Init(pFlags);
 		if(code < 0)
 			SDL_Log("Failed initialize SDL2: %s", SDL_GetError());
 
-		return code;
+		return code == 0;
 	}
 
 	void Finalize()

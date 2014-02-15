@@ -3,6 +3,7 @@
 // Project Includes
 #include <SDL2Cpp\Events.hpp>
 #include <SDL2Cpp\GamePad.hpp>
+#include <SDL2Cpp\Joystick.hpp>
 #include <SDL2Cpp\Keyboard.hpp>
 #include <SDL2Cpp\Mouse.hpp>
 
@@ -18,9 +19,10 @@ namespace SDL2
 
 	void Events::Poll()
 	{
+		GamePad::Clear();
+		Joystick::Clear();
 		Keyboard::Clear();
 		Mouse::Clear();
-		GamePad::Clear();
 
 		while (SDL_PollEvent(&mEvent))
 		{
@@ -138,18 +140,23 @@ namespace SDL2
 					break;
 				case SDL_CONTROLLERAXISMOTION:
 					OnControllerAxisMotion(mEvent.caxis.axis, mEvent.caxis.value, mEvent.caxis.which);
+					GamePad::SetAxis(mEvent.caxis.axis, mEvent.caxis.value, mEvent.caxis.which);
 					break;
 				case SDL_CONTROLLERBUTTONDOWN:
 					OnControllerButtonDown(mEvent.cbutton.button, mEvent.cbutton.which);
+					GamePad::SetButton(mEvent.cbutton.button, true, mEvent.cbutton.which);
 					break;
 				case SDL_CONTROLLERBUTTONUP:
 					OnControllerButtonUp(mEvent.cbutton.button, mEvent.cbutton.which);
+					GamePad::SetButton(mEvent.cbutton.button, false, mEvent.cbutton.which);
 					break;
 				case SDL_CONTROLLERDEVICEADDED:
 					OnControllerDeviceAdded(mEvent.cdevice.which);
+					GamePad::Add(mEvent.cdevice.which);
 					break;
 				case SDL_CONTROLLERDEVICEREMOVED:
 					OnControllerDeviceRemoved(mEvent.cdevice.which);
+					GamePad::Remove(mEvent.cdevice.which);
 					break;
 				case SDL_CONTROLLERDEVICEREMAPPED:
 					OnControllerDeviceRemapped(mEvent.cdevice.which);
